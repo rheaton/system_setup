@@ -1,0 +1,12 @@
+#!/bin/bash
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+source "$SCRIPT_DIR/worktree_lib.bash"
+
+function main() {
+  _worktree_exists
+
+  echo $(_worktree_prefix)
+}
+
+main

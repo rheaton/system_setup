@@ -1,0 +1,36 @@
+#!/bin/bash
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../lib" >/dev/null 2>&1 && pwd )"
+source "$SCRIPT_DIR"/worktree_lib.bash
+
+function main() {
+  local worktree_name=$1
+  if [ -z "$worktree_name" ]; then
+    echo "Clearing worktree"
+    echo "" > "$WORKTREE_DOTFILE"
+    exit 0
+  fi
+
+  echo "$worktree_name" > "$WORKTREE_DOTFILE"
+
+  if [ ! -d $(_worktree_repo) ]; then
+    echo "No worktree exists at $(_worktree_repo). Create it and try again"
+    exit 1
+  fi
+
+  mkdir -p $(_worktree_datadir)
+
+  if [ ! -d $(_worktree_prefix) ]; then
+    local usr
+    usr=$(id -un)
+    sudo mkdir $(_worktree_prefix)
+    sudo chown "$usr" $(_worktree_prefix)
+  fi
+
+  cat <<EOF
+Usage:
+  worktree_prefix: $(worktree_prefix)
+EOF
+}
+
+main "$@"

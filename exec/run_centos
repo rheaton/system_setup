@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# shellcheck disable=SC2086
+docker run -it -v $HOME/workspace:/workspace centos:7
