@@ -1,0 +1,7 @@
+#!/bin/bash
+
+function main() {
+  echo "--enable-depend --enable-tap-tests --config-cache --with-openssl --with-includes=/usr/local/opt/openssl@1.1/include --with-libraries=/usr/local/opt/openssl@1.1/lib"
+}
+
+main

@@ -30,6 +30,9 @@ function main() {
   cat <<EOF
 Usage:
   worktree_prefix: $(worktree_prefix)
+  datadir: cd $(_worktree_datadir)
+  repo: cd $(_worktree_repo)
+  src: Add prefix to PATH
 EOF
 }
 
